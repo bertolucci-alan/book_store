@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
-const AddressOwner = require("./Address_Owner");
 
-class Owner extends Model {
+class Client extends Model {
   static init(connection) {
     super.init(
       {
@@ -11,21 +10,24 @@ class Owner extends Model {
         email: DataTypes.STRING,
         phone: DataTypes.STRING,
       },
-
       {
         sequelize: connection,
-        tableName: "owner",
+        tableName: "client",
       }
     );
-    return this;
   }
   static associate(models) {
-    this.hasMany(models.Address_Owner, {
-      foreignKey: "owner_id",
-      as: "addressesOwner",
-    });
-    this.hasMany(models.Book, { foreignKey: "owner_id", as: "books" });
+    this.hasMany(
+      models.AddressClient,
+      {
+        foreignKey: "client_id",
+        as: "addressesClient",
+      },
+      this.hasMany(models.Purchase, {
+        foreignKey: "client",
+        as: "clientPurchase",
+      })
+    );
   }
 }
-
-module.exports = Owner;
+module.exports = Client;

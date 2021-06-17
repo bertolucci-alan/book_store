@@ -2,31 +2,30 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("owner", {
+    await queryInterface.createTable("addresses_owner", {
       id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        allowNull: false,
       },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      surname: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      age: {
+      owner_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: { model: "owner", key: "id" }, //tabela owner campo id
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
       },
-      email: {
+      zipcode: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      phone: {
+      street: {
         type: Sequelize.STRING,
+        allowNull: false,
+      },
+      number: {
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       created_at: {
@@ -41,6 +40,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("owner");
+    await queryInterface.dropTable("addresses_owner");
   },
 };

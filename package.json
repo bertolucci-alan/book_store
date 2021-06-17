@@ -14,5 +14,7 @@
   },
   "devDependencies": {
     "sequelize-cli": "^6.2.0"
-  }
+  },
+  "repository": "https://github.com/bertolucci-alan/livraria.git",
+  "author": "bertolucci-alan <beterrababir23@gmail.com>"
 }
