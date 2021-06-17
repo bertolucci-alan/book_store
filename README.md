@@ -1,1 +1,1 @@
-crudzin de livraria daquele jeitão
+CRUD simples de uma Book Store
